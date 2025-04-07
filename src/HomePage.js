@@ -58,7 +58,7 @@ export default function HomePage() {
           <h2 className="text-2xl font-semibold mb-2">Contact</h2>
           <p>Email: <a className="text-blue-400" href="mailto:alabiishina@gmail.com">alabiishina@gmail.com</a></p>
           <p>Location: Ottawa, Ontario</p>
-          <p>LinkedIn: <span className="text-gray-400">[Add your link here]</span></p>
+          <p>LinkedIn: <a className="text-blue-400" href="https://www.linkedin.com/in/alabishina">linkedin.com/in/alabishina</a></p>
         </section>
       </div>
     </div>
