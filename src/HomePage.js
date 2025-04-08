@@ -54,7 +54,6 @@ export default function HomePage() {
 
   const iconList = [
     FaIcons.FaMicrosoft,
-    SiIcons.SiAzuredevops,
     SiIcons.SiPowershell,
     FaIcons.FaGithub,
     SiIcons.SiVmware,
