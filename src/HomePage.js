@@ -30,7 +30,9 @@ export default function HomePage() {
   const [darkMode, setDarkMode] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [lang, setLang] = useState("en");
+  // eslint-disable-next-line no-unused-vars
   const [sassLevel, setSassLevel] = useState(0);
+  // eslint-disable-next-line no-unused-vars
   const [visits, setVisits] = useState(0);
 
   const t = translations[lang];
