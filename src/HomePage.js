@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { FaMicrosoft, FaGithub, FaWindows, FaAws, FaLinux, FaNetworkWired } from "react-icons/fa";
-import { SiAzuredevops, SiPowershell, SiVmware, SiCisco, SiGooglecloud } from "react-icons/si";
+import * as FaIcons from "react-icons/fa";
+import * as SiIcons from "react-icons/si";
 
 const translations = {
   en: {
@@ -52,10 +52,22 @@ export default function HomePage() {
 
   const t = translations[lang];
 
+  const iconList = [
+    FaIcons.FaMicrosoft,
+    SiIcons.SiAzuredevops,
+    SiIcons.SiPowershell,
+    FaIcons.FaGithub,
+    SiIcons.SiVmware,
+    SiIcons.SiCisco,
+    FaIcons.FaAws,
+    SiIcons.SiGooglecloud,
+    FaIcons.FaWindows,
+    FaIcons.FaLinux,
+    FaIcons.FaNetworkWired
+  ];
+
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1200);
+    const timer = setTimeout(() => setIsLoading(false), 1200);
     return () => clearTimeout(timer);
   }, []);
 
@@ -126,6 +138,18 @@ export default function HomePage() {
               {t.send}
             </button>
           </form>
+        </section>
+
+        <section className="mb-12 animate-fade-in">
+          <h2 className="text-3xl font-semibold mb-3 border-b border-gray-700 pb-1">{t.skills}</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 text-center text-gray-300 dark:text-gray-700">
+            {iconList.map((Icon, index) => (
+              <div key={index} className="hover:scale-110 hover:text-green-400 transition-transform duration-300 flex flex-col items-center">
+                <Icon className="text-4xl mb-1" />
+                <span>{Icon.displayName || Icon.name}</span>
+              </div>
+            ))}
+          </div>
         </section>
 
         <footer className="mt-12 text-center text-sm text-gray-400">
