@@ -118,7 +118,7 @@ export default function HomePage() {
           </a>
         </div>
 
-        {/* About */}
+        {/* About Section */}
         <section className="mb-12 animate-fade-in">
           <h2 className="text-3xl font-semibold mb-3 border-b border-gray-700 pb-1">{t.about}</h2>
           <p className="text-lg text-gray-300 dark:text-gray-800 leading-relaxed">
@@ -129,11 +129,10 @@ export default function HomePage() {
           </p>
         </section>
 
-        {/* Experience / Projects */}
+        {/* Projects Section */}
         <section className="mb-12 animate-fade-in">
           <h2 className="text-3xl font-semibold mb-3 border-b border-gray-700 pb-1">{t.experience}</h2>
           <div className="space-y-8">
-            {/* Project Cards */}
             <div className="bg-gray-800 dark:bg-gray-100 p-6 rounded-xl shadow">
               <h3 className="text-xl font-bold mb-1">Avanade – Senior Analyst</h3>
               <p className="text-sm text-gray-400 mb-2">March 2022 – Present | Ottawa, Ontario</p>
@@ -162,20 +161,28 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Skills */}
+        {/* Skills Section with Icons */}
         <section className="mb-12 animate-fade-in">
           <h2 className="text-3xl font-semibold mb-3 border-b border-gray-700 pb-1">{t.skills}</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 text-gray-300 dark:text-gray-800 text-sm">
-            <div><strong>OS:</strong> Windows Server, Windows 10/11, Linux, MacOS</div>
-            <div><strong>Cloud:</strong> Azure, Azure AD, Microsoft 365, CyberArk</div>
-            <div><strong>DB & Dev:</strong> MySQL, MS SQL Server, Python, MS Access</div>
-            <div><strong>Networking:</strong> TCP/IP, DNS, DHCP, VPN, VOIP, Firewall</div>
-            <div><strong>Tools:</strong> VMware, Exchange, SCCM, LogMeIn, MS Project</div>
-            <div><strong>Methodologies:</strong> ITIL, Security+, Project Management</div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 text-center text-gray-300 dark:text-gray-700">
+            {iconList.map((Icon, index) => (
+              <div key={index} className="hover:scale-110 hover:text-green-400 transition-transform duration-300 flex flex-col items-center">
+                <Icon className="text-4xl mb-1" />
+                <span className="text-xs mt-1">{Icon.displayName || Icon.name}</span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 text-gray-300 dark:text-gray-800 text-sm">
+            <div><strong>OS:</strong> Windows Server, Linux, MacOS</div>
+            <div><strong>Cloud:</strong> Azure, Microsoft 365, CyberArk</div>
+            <div><strong>Dev & DB:</strong> Python, MySQL, SQL Server</div>
+            <div><strong>Networking:</strong> TCP/IP, DNS, DHCP, VPN</div>
+            <div><strong>Tools:</strong> VMware, Exchange, SCCM</div>
+            <div><strong>Methodologies:</strong> ITIL, Security+</div>
           </div>
         </section>
 
-        {/* Certifications */}
+        {/* Certifications Section */}
         <section className="mb-12 animate-fade-in">
           <h2 className="text-3xl font-semibold mb-3 border-b border-gray-700 pb-1">{t.certs}</h2>
           <ul className="list-disc list-inside space-y-2 text-gray-300 dark:text-gray-800">
@@ -189,7 +196,7 @@ export default function HomePage() {
           </ul>
         </section>
 
-        {/* Sass & Visitors + Contact Form */}
+        {/* Sass Meter and Contact */}
         <section className="mb-12 animate-fade-in">
           <div className="mb-6">
             <h2 className="text-2xl font-semibold mb-2">{t.sass}: {sassLevel}% 💅</h2>
@@ -214,7 +221,6 @@ export default function HomePage() {
           </form>
         </section>
 
-        {/* Footer */}
         <footer className="mt-12 text-center text-sm text-gray-400">
           <p>© {new Date().getFullYear()} Shina Alabi. {t.built}</p>
         </footer>
