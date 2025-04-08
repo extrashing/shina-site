@@ -44,7 +44,6 @@ export default function HomePage() {
     { icon: FaIcons.FaLinux, label: "Linux" },
     { icon: FaIcons.FaNetworkWired, label: "Networking" }
   ];
-
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1200);
     return () => clearTimeout(timer);
@@ -107,7 +106,6 @@ export default function HomePage() {
             <FaIcons.FaWhatsapp />
           </a>
         </div>
-
         {/* About Section */}
         <section className="mb-12 bg-white dark:bg-gray-800 shadow-sm rounded-xl p-6 animate-fade-in">
           <h2 className="text-3xl font-semibold mb-3 border-b border-blue-700 dark:border-blue-400 pb-1 text-blue-700 dark:text-blue-400">{t.about}</h2>
@@ -115,11 +113,115 @@ export default function HomePage() {
             I’m a resourceful and results-driven IT Analyst based in Ottawa, with a passion for designing and supporting reliable IT infrastructures. 
             With hands-on experience across network and systems administration, helpdesk, and technical support, I specialize in driving operational 
             efficiency and aligning IT solutions with real business needs. Whether it's optimizing cloud environments, managing large-scale migrations, 
-            or streamlining onboarding through automation, I bring strategic thinking and strong execution to every challenge. Let’s build something amazing together.
+            or streamlining onboarding through automation, I bring strategic thinking and strong execution to every challenge.
           </p>
         </section>
 
-        {/* Experience, Skills, Certs, Contact form come here — already provided above */}
+        {/* Experience Section */}
+        <section className="mb-12 bg-white dark:bg-gray-800 shadow-sm rounded-xl p-6 animate-fade-in">
+          <h2 className="text-3xl font-semibold mb-3 border-b border-blue-700 dark:border-blue-400 pb-1 text-blue-700 dark:text-blue-400">{t.experience}</h2>
+          <div className="space-y-6">
+            <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-xl">
+              <h3 className="text-xl font-bold mb-1 text-blue-700 dark:text-blue-400">Avanade – Senior Analyst</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">March 2022 – Present | Ottawa, ON</p>
+              <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
+                <li>Streamlined onboarding/offboarding with IAM automation</li>
+                <li>Deployed Windows 11 via Microsoft Autopilot across Canada & overseas</li>
+                <li>Migrated 2,500 users to a new AD domain and O365 tenant</li>
+              </ul>
+            </div>
+
+            <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-xl">
+              <h3 className="text-xl font-bold mb-1 text-blue-700 dark:text-blue-400">Sage – IT Solution Architect</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">July 2023 – March 2024 | Ottawa, ON</p>
+              <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
+                <li>Migrated 10,000 employees to Windows 11 across Canada</li>
+                <li>Redesigned Active Directory OU and group policies</li>
+              </ul>
+            </div>
+
+            <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-xl">
+              <h3 className="text-xl font-bold mb-1 text-blue-700 dark:text-blue-400">House of Commons – Senior IT Analyst</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">Sept 2022 – July 2023 | Ottawa, ON</p>
+              <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
+                <li>Provided VIP IT support and managed Azure AD & VMs</li>
+                <li>Improved service delivery through refined IT policies and procedures</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Skills Section */}
+        <section className="mb-12 bg-white dark:bg-gray-800 shadow-sm rounded-xl p-6 animate-fade-in">
+          <h2 className="text-3xl font-semibold mb-3 border-b border-blue-700 dark:border-blue-400 pb-1 text-blue-700 dark:text-blue-400">{t.skills}</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-gray-700 dark:text-gray-300">
+            {iconList.map(({ icon: Icon, label }, index) => (
+              <div key={index} className="flex items-center gap-3 hover:scale-105 hover:text-green-500 transition-transform duration-300">
+                <Icon className="text-2xl" />
+                <span className="text-sm">{label}</span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 text-sm">
+            <div><strong>OS:</strong> Windows Server, Linux, MacOS</div>
+            <div><strong>Cloud:</strong> Azure, AWS, GCP</div>
+            <div><strong>Dev & DB:</strong> Python, React.js, HTML, MySQL, SQL Server</div>
+            <div><strong>Networking:</strong> TCP/IP, DNS, DHCP, VPN</div>
+            <div><strong>Tools:</strong> VMware, Exchange, SCCM</div>
+            <div><strong>Methodologies:</strong> ITIL, Security+</div>
+          </div>
+        </section>
+        {/* Certifications */}
+        <section className="mb-12 bg-white dark:bg-gray-800 shadow-sm rounded-xl p-6 animate-fade-in">
+          <h2 className="text-3xl font-semibold mb-3 border-b border-blue-700 dark:border-blue-400 pb-1 text-blue-700 dark:text-blue-400">{t.certs}</h2>
+          <ul className="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <li>CCNA – Cisco Certified Network Associate</li>
+            <li>Microsoft Certified: Azure Administrator Associate (AZ-104)</li>
+            <li>Microsoft Certified: Identity and Access Administrator Associate (SC-300)</li>
+            <li>Microsoft Certified: Information Protection and Compliance Administrator Associate (SC-400)</li>
+            <li>Microsoft 365 Certified: Endpoint Administrator Associate (MD-102)</li>
+            <li>Microsoft 365 Certified: Enterprise Administrator Expert (MS-102)</li>
+            <li>Certified Wireless Technician (CWNP)</li>
+          </ul>
+        </section>
+
+        {/* Sass Meter + Contact Form */}
+        <section className="mb-12 bg-white dark:bg-gray-800 shadow-sm rounded-xl p-6 animate-fade-in">
+          <div className="mb-6">
+            <h2 className="text-2xl font-semibold mb-2 text-blue-700 dark:text-blue-400">{t.sass}: {sassLevel}% 💅</h2>
+            <h2 className="text-2xl font-semibold mb-2 text-blue-700 dark:text-blue-400">{t.visitors}: {visits}</h2>
+          </div>
+          <form 
+            action="https://formspree.io/f/xblgpeqp" 
+            method="POST" 
+            className="space-y-4"
+          >
+            <div>
+              <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">{t.name}</label>
+              <input type="text" name="name" required className="w-full px-4 py-2 rounded bg-gray-100 dark:bg-gray-900 text-black dark:text-white" placeholder={t.name} />
+            </div>
+            <div>
+              <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+              <input type="email" name="email" required className="w-full px-4 py-2 rounded bg-gray-100 dark:bg-gray-900 text-black dark:text-white" placeholder="Email address" />
+            </div>
+            <div>
+              <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">Phone</label>
+              <input type="tel" name="phone" className="w-full px-4 py-2 rounded bg-gray-100 dark:bg-gray-900 text-black dark:text-white" placeholder="Phone number (optional)" />
+            </div>
+            <div>
+              <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">{t.message}</label>
+              <textarea name="message" required className="w-full px-4 py-2 rounded bg-gray-100 dark:bg-gray-900 text-black dark:text-white" rows="4" placeholder={t.message}></textarea>
+            </div>
+            <button type="submit" className="bg-blue-600 hover:bg-blue-700 transition text-white font-medium py-2 px-4 rounded-xl">
+              {t.send}
+            </button>
+          </form>
+        </section>
+
+        {/* Footer */}
+        <footer className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
+          <p>© {new Date().getFullYear()} Shina Alabi. {t.built}</p>
+        </footer>
       </div>
     </div>
   );
