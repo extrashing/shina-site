@@ -24,7 +24,6 @@ export default function HomePage() {
   const [darkMode, setDarkMode] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [lang, setLang] = useState("en");
-  const [sassLevel, setSassLevel] = useState(0);
   const [visits, setVisits] = useState(0);
 
   const t = translations[lang];
@@ -58,13 +57,6 @@ export default function HomePage() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Sass meter simulation.
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSassLevel((prev) => (prev < 100 ? prev + 1 : 0));
-    }, 600);
-    return () => clearInterval(interval);
-  }, []);
 
   // Count site visits.
   useEffect(() => {
