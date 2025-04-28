@@ -22,6 +22,12 @@ export default function PortfolioWebsite() {
     setFormData({ name: '', email: '', message: '' });
   };
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    // This prevents the default behavior while maintaining the link appearance
+    console.log('Link clicked');
+  };
+
   return (
     <div className="bg-white text-black font-sans">
       <header className="flex justify-between items-center max-w-6xl mx-auto py-8 px-6 border-b border-gray-200 flex-col md:flex-row">
@@ -143,16 +149,19 @@ export default function PortfolioWebsite() {
                 title="Cloud Architecture Best Practices for 2025"
                 date="April 15, 2025"
                 excerpt="Exploring the latest trends and best practices in cloud architecture design, with a focus on multi-cloud strategies and cost optimization."
+                handleClick={handleClick}
               />
               <BlogCard
                 title="Infrastructure as Code: Beyond the Basics"
                 date="March 22, 2025"
                 excerpt="Taking your IaC implementations to the next level with advanced Terraform techniques and modular design patterns."
+                handleClick={handleClick}
               />
               <BlogCard
                 title="Securing Kubernetes in Production Environments"
                 date="February 8, 2025"
                 excerpt="A comprehensive guide to implementing security best practices for Kubernetes clusters in enterprise environments."
+                handleClick={handleClick}
               />
             </div>
           </section>
@@ -226,8 +235,18 @@ export default function PortfolioWebsite() {
                 <ContactItem title="Email" value="alabishina_638@hotmail.com" isLink={true} href="mailto:alabishina_638@hotmail.com" />
                 <ContactItem title="Phone" value="(416) 997-5319" />
                 <ContactItem title="Location" value="Ontario, Canada" />
-                <ContactItem title="LinkedIn" value="Connect with me on LinkedIn" isLink={true} href="#" />
-                <ContactItem title="GitHub" value="View my projects on GitHub" isLink={true} href="#" />
+                <ContactItem 
+                  title="LinkedIn" 
+                  value="Connect with me on LinkedIn" 
+                  isLink={true} 
+                  href="https://linkedin.com/in/your-profile" 
+                />
+                <ContactItem 
+                  title="GitHub" 
+                  value="View my projects on GitHub" 
+                  isLink={true} 
+                  href="https://github.com/your-username" 
+                />
               </div>
             </div>
           </section>
@@ -271,7 +290,7 @@ function ExperienceItem({ title, company, period, description, isLast = false })
   );
 }
 
-function BlogCard({ title, date, excerpt }) {
+function BlogCard({ title, date, excerpt, handleClick }) {
   return (
     <div className="border border-gray-200 rounded-lg overflow-hidden hover:transform hover:-translate-y-1 transition-transform">
       <div className="h-48 bg-gray-100 flex items-center justify-center">
@@ -281,13 +300,18 @@ function BlogCard({ title, date, excerpt }) {
         <h3 className="text-xl font-semibold mb-2">{title}</h3>
         <span className="text-sm text-gray-500 block mb-4">{date}</span>
         <p className="text-gray-700 mb-4">{excerpt}</p>
-        <a href="#" className="font-medium border-b border-black hover:border-gray-500 hover:text-gray-500 transition-colors">Read More</a>
+        <button 
+          onClick={handleClick} 
+          className="font-medium border-b border-black hover:border-gray-500 hover:text-gray-500 transition-colors bg-transparent p-0"
+        >
+          Read More
+        </button>
       </div>
     </div>
   );
 }
 
-function ContactItem({ title, value, isLink = false, href = "#" }) {
+function ContactItem({ title, value, isLink = false, href = "/" }) {
   return (
     <div className="flex items-start gap-4">
       <strong className="font-medium">{title}:</strong>
