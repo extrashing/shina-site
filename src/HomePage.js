@@ -1,222 +1,301 @@
-import React, { useState, useEffect } from "react";
-import * as FaIcons from "react-icons/fa";
-import * as SiIcons from "react-icons/si";
+import React, { useState } from 'react';
 
-const translations = {
-  en: {
-    about: "About Me",
-    experience: "Experience Highlights",
-    skills: "Skills & Tools",
-    certs: "Certifications",
-    contact: "Contact",
-    loading: "Loading brilliance...",
-    download: "Download Resume",
-    hire: "Hire Me",
-    dark: "Switch to Dark Mode",
-    light: "Switch to Light Mode",
-    built:
-      "Site designed and built by Shina Alabi with React, Tailwind, and a pinch of creativity.",
-    headshotAlt: "Shina Alabi headshot"
-  }
-};
+export default function PortfolioWebsite() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
 
-export default function HomePage() {
-  const [darkMode, setDarkMode] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
-  const [lang, setLang] = useState("en");
-  const [visits, setVisits] = useState(0);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
 
-  const t = translations[lang];
-
-  const iconList = [
-    { icon: FaIcons.FaMicrosoft, label: "Microsoft" },
-    { icon: FaIcons.FaGithub, label: "GitHub" },
-    { icon: SiIcons.SiVmware, label: "VMware" },
-    { icon: SiIcons.SiCisco, label: "Cisco" },
-    { icon: FaIcons.FaAws, label: "AWS" },
-    { icon: SiIcons.SiGooglecloud, label: "Google Cloud" },
-    { icon: FaIcons.FaWindows, label: "Windows" },
-    { icon: FaIcons.FaLinux, label: "Linux" },
-    { icon: FaIcons.FaNetworkWired, label: "Networking" }
-  ];
-
-  // Get theme from localStorage.
-  useEffect(() => {
-    const storedMode = localStorage.getItem("theme");
-    if (storedMode) setDarkMode(storedMode === "dark");
-  }, []);
-
-  // Update theme in localStorage.
-  useEffect(() => {
-    localStorage.setItem("theme", darkMode ? "dark" : "light");
-  }, [darkMode]);
-
-  // Simulate loading.
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1200);
-    return () => clearTimeout(timer);
-  }, []);
-
-
-  // Count site visits.
-  useEffect(() => {
-    const current = localStorage.getItem("siteVisits") || "0";
-    const updated = parseInt(current, 10) + 1;
-    localStorage.setItem("siteVisits", updated);
-    setVisits(updated);
-  }, []);
-
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-black text-white text-2xl animate-pulse">
-        {t.loading}
-      </div>
-    );
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    alert('Thanks for your message! I\'ll get back to you soon.');
+    setFormData({ name: '', email: '', message: '' });
+  };
 
   return (
-    <div
-      className={`${
-        darkMode
-          ? "bg-gradient-to-b from-gray-900 to-black text-white"
-          : "bg-gray-50 text-gray-900"
-      } min-h-screen transition duration-300`}
-    >
-      <div className="max-w-5xl mx-auto p-6">
-        {/* Navigation */}
-        <nav className="flex justify-end gap-4 mb-8">
-          <button
-            onClick={() => setLang(lang === "en" ? "fr" : "en")}
-            className="px-4 py-2 rounded bg-blue-700 hover:bg-blue-600 text-white"
-          >
-            {lang === "en" ? "FR 🇫🇷" : "EN 🇬🇧"}
-          </button>
-          <button
-            onClick={() => setDarkMode((prev) => !prev)}
-            className="px-4 py-2 rounded bg-gray-700 hover:bg-gray-600 text-white"
-          >
-            {darkMode ? t.light : t.dark}
-          </button>
+    <div className="bg-white text-black font-sans">
+      <header className="flex justify-between items-center max-w-6xl mx-auto py-8 px-6 border-b border-gray-200 flex-col md:flex-row">
+        <div className="text-2xl font-bold tracking-tight mb-4 md:mb-0">Shina Alabi</div>
+        <nav>
+          <ul className="flex flex-wrap justify-center gap-8">
+            <li><a href="#expertise" className="font-medium hover:border-b hover:border-black">Expertise</a></li>
+            <li><a href="#experience" className="font-medium hover:border-b hover:border-black">Experience</a></li>
+            <li><a href="#blog" className="font-medium hover:border-b hover:border-black">Blog</a></li>
+            <li><a href="#certifications" className="font-medium hover:border-b hover:border-black">Certifications</a></li>
+            <li><a href="#contact" className="font-medium hover:border-b hover:border-black">Contact</a></li>
+          </ul>
         </nav>
+      </header>
 
-        {/* Header */}
-        <header className="text-center mb-12">
-          <img
-            src="/headshot.jpg"
-            alt={t.headshotAlt}
-            className="w-32 h-32 rounded-full mx-auto mb-4 shadow-lg"
-          />
-          <h1 className="text-5xl font-bold mb-2 text-blue-700 dark:text-blue-400">
-            Shina Alabi
-          </h1>
-          <p className="text-xl text-gray-500 dark:text-gray-300">
-            IT SaaS Engineer & Systems Administrator | Ottawa, ON
-          </p>
-        </header>
-
-        {/* Call To Action */}
-        <div className="flex justify-center gap-4 mb-12">
-          <a
-            href="./Shina_Alabi_Resume_Affirm_Optimized.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-full text-white"
-          >
-            {t.download}
-          </a>
-          <a
-            href="mailto:alabiishina@gmail.com"
-            className="px-6 py-3 bg-green-600 hover:bg-green-700 rounded-full text-white"
-          >
-            {t.hire}
-          </a>
-        </div>
-
-        {/* Social Links */}
-        <div className="flex justify-center gap-6 mb-12 text-2xl">
-          <a
-            href="https://www.linkedin.com/in/alabishina"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="hover:text-blue-500"
-          >
-            <FaIcons.FaLinkedin />
-          </a>
-          <a
-            href="https://wa.me/14169975319"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="WhatsApp"
-            className="hover:text-green-500"
-          >
-            <FaIcons.FaWhatsapp />
-          </a>
-        </div>
-
-        {/* Main Content */}
-        <main className="space-y-12">
-          {/* About Section */}
-          <section className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow transition-transform hover:scale-105">
-            <h2 className="text-3xl font-semibold border-b pb-2 mb-4 text-blue-700 dark:text-blue-400">
-              {t.about}
-            </h2>
-            <p className="text-gray-700 dark:text-gray-300">
-              I’m a resourceful IT Analyst based in Ottawa with a knack for tackling complex challenges and delivering effective solutions.
-            </p>
+      <main>
+        <div className="max-w-6xl mx-auto px-6">
+          <section className="flex flex-col items-start py-24 gap-6">
+            <h1 className="text-5xl font-bold leading-tight tracking-tight">Cloud Solutions Architect & DevOps Engineer</h1>
+            <p className="text-xl text-gray-700 max-w-2xl">Designing scalable, secure, and cost-effective cloud architectures. Optimizing infrastructure through automation and DevOps practices.</p>
+            <a href="#contact" className="inline-block bg-black text-white py-3 px-6 rounded font-medium hover:bg-gray-800 transition-colors mt-4">Get in Touch</a>
           </section>
 
-          {/* Skills Section */}
-          <section className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow transition-transform hover:scale-105">
-            <h2 className="text-3xl font-semibold border-b pb-2 mb-4 text-blue-700 dark:text-blue-400">
-              {t.skills}
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-gray-700 dark:text-gray-300 mb-6">
-              {iconList.map(({ icon: Icon, label }, index) => (
-                <div
-                  key={index}
-                  className="flex items-center space-x-3 hover:text-green-500 transition-transform"
-                >
-                  <Icon className="text-2xl" />
-                  <span className="text-sm">{label}</span>
+          <section id="expertise" className="py-20 border-t border-gray-200">
+            <h2 className="text-4xl font-bold mb-8 tracking-tight">Areas of Expertise</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <ExpertiseCard
+                title="Cloud Architecture"
+                items={[
+                  "Multi-cloud & hybrid solutions",
+                  "Scalable infrastructure design",
+                  "High availability architectures",
+                  "Cloud migration strategies"
+                ]}
+              />
+              <ExpertiseCard
+                title="DevOps & Automation"
+                items={[
+                  "CI/CD pipeline implementation",
+                  "Infrastructure as Code (Terraform)",
+                  "Configuration management (Ansible)",
+                  "GitOps workflows"
+                ]}
+              />
+              <ExpertiseCard
+                title="Security & Compliance"
+                items={[
+                  "Cloud security frameworks",
+                  "Compliance implementation (SOC2, GDPR)",
+                  "Identity & access management", 
+                  "Secure network architecture"
+                ]}
+              />
+              <ExpertiseCard
+                title="Containerization"
+                items={[
+                  "Docker container solutions",
+                  "Kubernetes orchestration",
+                  "Microservices architecture",
+                  "AKS, ECS, GKE implementation"
+                ]}
+              />
+              <ExpertiseCard
+                title="Cloud Platforms"
+                items={[
+                  "Microsoft Azure",
+                  "Amazon Web Services (AWS)",
+                  "Google Cloud Platform (GCP)",
+                  "Multi-cloud strategies"
+                ]}
+              />
+              <ExpertiseCard
+                title="Monitoring & Analytics"
+                items={[
+                  "Prometheus & Grafana",
+                  "Azure Monitor",
+                  "Log analytics",
+                  "Performance optimization"
+                ]}
+              />
+            </div>
+          </section>
+
+          <section id="experience" className="py-20 border-t border-gray-200">
+            <h2 className="text-4xl font-bold mb-8 tracking-tight">Professional Experience</h2>
+            <div className="max-w-3xl">
+              <ExperienceItem
+                title="Cloud Solution Architect"
+                company="Avanade"
+                period="March 2022 - Present"
+                description="Designing and implementing scalable cloud architectures that have improved system reliability by 40%. Leading migration of legacy systems to cloud platforms, resulting in 30% cost reduction and faster deployments."
+              />
+              <ExperienceItem
+                title="Cloud Infrastructure Engineer"
+                company="Sage"
+                period="July 2023 - March 2024"
+                description="Engineered self-healing auto-scaling infrastructure using AWS services, reducing manual interventions during traffic spikes by 90%. Migrated 80+ VMs to Azure, lowering infrastructure costs by 28%."
+              />
+              <ExperienceItem
+                title="DevOps Engineer"
+                company="House of Commons"
+                period="September 2022 - July 2023"
+                description="Designed and deployed CI/CD pipelines across 12 microservices, reducing release times from hours to under 10 minutes. Implemented automated rollback strategies that decreased mean time to recovery by 65%."
+              />
+              <ExperienceItem
+                title="Cloud Consultant"
+                company="Accenture"
+                period="February 2022 - September 2022"
+                description="Advised on hybrid cloud migration strategies for enterprise clients, projecting 5-year cost savings of $3.4M. Delivered proof of concepts using serverless architectures that enabled clients to reduce backend development costs by 45%."
+                isLast={true}
+              />
+            </div>
+          </section>
+
+          <section id="blog" className="py-20 border-t border-gray-200">
+            <h2 className="text-4xl font-bold mb-8 tracking-tight">Latest From My Blog</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <BlogCard
+                title="Cloud Architecture Best Practices for 2025"
+                date="April 15, 2025"
+                excerpt="Exploring the latest trends and best practices in cloud architecture design, with a focus on multi-cloud strategies and cost optimization."
+              />
+              <BlogCard
+                title="Infrastructure as Code: Beyond the Basics"
+                date="March 22, 2025"
+                excerpt="Taking your IaC implementations to the next level with advanced Terraform techniques and modular design patterns."
+              />
+              <BlogCard
+                title="Securing Kubernetes in Production Environments"
+                date="February 8, 2025"
+                excerpt="A comprehensive guide to implementing security best practices for Kubernetes clusters in enterprise environments."
+              />
+            </div>
+          </section>
+
+          <section id="certifications" className="py-20 border-t border-gray-200">
+            <h2 className="text-4xl font-bold mb-8 tracking-tight">Certifications</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                "Microsoft Certified: Azure Solutions Architect Expert (AZ-305)",
+                "Microsoft Certified: Azure Administrator Associate (AZ-104)",
+                "Microsoft Certified: Identity and Access Administrator Associate (SC-300)",
+                "Microsoft Certified: Information Protection and Compliance Administrator Associate (SC-400)",
+                "Microsoft 365 Certified: Endpoint Administrator Associate (MD-102)",
+                "Microsoft 365 Certified: Administrator Expert (MS-102)",
+                "Cisco Certified Network Associate (CCNA)",
+                "Certified Wireless Technology Specialist (CWTS)"
+              ].map((cert, index) => (
+                <div key={index} className="p-4 border border-gray-200 rounded font-medium">
+                  {cert}
                 </div>
               ))}
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 text-sm">
-              <div><strong>OS:</strong> Windows Server, Linux, MacOS</div>
-              <div><strong>Cloud:</strong> Azure, AWS, GCP</div>
-              <div><strong>Dev & DB:</strong> Python, React.js, HTML, MySQL, SQL Server</div>
-              <div><strong>Networking:</strong> TCP/IP, DNS, DHCP, VPN</div>
-              <div><strong>Tools:</strong> VMware, Exchange, SCCM</div>
-              <div><strong>Methodologies:</strong> ITIL, Security+</div>
+          </section>
+
+          <section id="contact" className="py-20 border-t border-gray-200">
+            <h2 className="text-4xl font-bold mb-8 tracking-tight">Get in Touch</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="name" className="font-medium">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="p-3 border border-gray-200 rounded"
+                    required
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="email" className="font-medium">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="p-3 border border-gray-200 rounded"
+                    required
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="message" className="font-medium">Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    rows="5"
+                    className="p-3 border border-gray-200 rounded"
+                    required
+                  ></textarea>
+                </div>
+                <button type="submit" className="bg-black text-white py-3 px-6 rounded font-medium hover:bg-gray-800 transition-colors mt-2">
+                  Send Message
+                </button>
+              </form>
+
+              <div className="flex flex-col gap-4">
+                <ContactItem title="Email" value="alabishina_638@hotmail.com" isLink={true} href="mailto:alabishina_638@hotmail.com" />
+                <ContactItem title="Phone" value="(416) 997-5319" />
+                <ContactItem title="Location" value="Ontario, Canada" />
+                <ContactItem title="LinkedIn" value="Connect with me on LinkedIn" isLink={true} href="#" />
+                <ContactItem title="GitHub" value="View my projects on GitHub" isLink={true} href="#" />
+              </div>
             </div>
           </section>
+        </div>
+      </main>
 
-          {/* Certifications Section */}
-          <section className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow transition-transform hover:scale-105">
-            <h2 className="text-3xl font-semibold border-b pb-2 mb-4 text-blue-700 dark:text-blue-400">
-              {t.certs}
-            </h2>
-            <ul className="list-disc pl-5 text-gray-700 dark:text-gray-300">
-              <li>CCNA – Cisco Certified Network Associate</li>
-              <li>Microsoft Certified: Azure Administrator Associate (AZ-104)</li>
-              <li>Microsoft Certified: Identity and Access Administrator Associate (SC-300)</li>
-              <li>Microsoft Certified: Information Protection and Compliance Administrator Associate (SC-400)</li>
-              <li>Microsoft 365 Certified: Endpoint Administrator Associate (MD-102)</li>
-              <li>Microsoft 365 Certified: Enterprise Administrator Expert (MS-102)</li>
-              <li>Certified Wireless Technician (CWNP)</li>
-            </ul>
-          </section>
-        </main>
+      <footer className="py-8 text-center border-t border-gray-200 text-gray-600">
+        <div className="max-w-6xl mx-auto px-6">
+          <p>&copy; 2025 Shina Alabi. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
 
-        {/* Footer */}
-        <footer className="mt-12 text-center text-gray-500 dark:text-gray-400 text-sm">
-          <p>
-            © {new Date().getFullYear()} Shina Alabi. {t.built}
-          </p>
-          <p className="mt-2">Site Visits: {visits}</p>
-        </footer>
+function ExpertiseCard({ title, items }) {
+  return (
+    <div className="p-6 border border-gray-200 rounded-lg hover:transform hover:-translate-y-1 transition-transform">
+      <h3 className="text-xl font-semibold mb-4">{title}</h3>
+      <ul className="list-disc pl-6 text-gray-700">
+        {items.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function ExperienceItem({ title, company, period, description, isLast = false }) {
+  return (
+    <div className="relative pl-8 mb-12 last:mb-0">
+      <div className="absolute left-0 top-2 w-3 h-3 rounded-full bg-black"></div>
+      {!isLast && (
+        <div className="absolute left-1.5 top-5 w-px h-full bg-gray-200"></div>
+      )}
+      <h3 className="text-xl font-semibold mb-1">{title}</h3>
+      <div className="font-medium">{company}</div>
+      <div className="text-sm text-gray-500 mb-4">{period}</div>
+      <p className="text-gray-700">{description}</p>
+    </div>
+  );
+}
+
+function BlogCard({ title, date, excerpt }) {
+  return (
+    <div className="border border-gray-200 rounded-lg overflow-hidden hover:transform hover:-translate-y-1 transition-transform">
+      <div className="h-48 bg-gray-100 flex items-center justify-center">
+        <img src="/api/placeholder/300/200" alt={title} className="w-full h-full object-cover" />
       </div>
+      <div className="p-6">
+        <h3 className="text-xl font-semibold mb-2">{title}</h3>
+        <span className="text-sm text-gray-500 block mb-4">{date}</span>
+        <p className="text-gray-700 mb-4">{excerpt}</p>
+        <a href="#" className="font-medium border-b border-black hover:border-gray-500 hover:text-gray-500 transition-colors">Read More</a>
+      </div>
+    </div>
+  );
+}
+
+function ContactItem({ title, value, isLink = false, href = "#" }) {
+  return (
+    <div className="flex items-start gap-4">
+      <strong className="font-medium">{title}:</strong>
+      {isLink ? (
+        <a href={href} className="border-b border-black hover:border-gray-500 hover:text-gray-500 transition-colors">{value}</a>
+      ) : (
+        <span>{value}</span>
+      )}
     </div>
   );
 }
