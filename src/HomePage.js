@@ -561,7 +561,7 @@ export default function PortfolioWebsite() {
                       href="https://linkedin.com/in/your-profile" 
                     />
                     <ContactItem 
-                      icon={<GitHub size={20} />}
+                      icon={<Github size={20} />}
                       title="GitHub" 
                       value="View my projects on GitHub" 
                       isLink={true} 
