@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Mail, Phone, MapPin, LinkedIn, Github, ChevronUp } from 'lucide-react';
+import { Menu, X, Mail, Phone, MapPin, LinkedinIcon, Github, ChevronUp } from 'lucide-react';
 
 export default function PortfolioWebsite() {
   const [formData, setFormData] = useState({
@@ -554,7 +554,7 @@ export default function PortfolioWebsite() {
                   <h3 className="text-xl font-semibold mb-4">Social Media</h3>
                   <div className="space-y-4">
                     <ContactItem 
-                      icon={<LinkedIn size={20} />}
+                      icon={<LinkedinIcon size={20} />}
                       title="LinkedIn" 
                       value="Connect with me on LinkedIn" 
                       isLink={true} 
