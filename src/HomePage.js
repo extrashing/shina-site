@@ -742,7 +742,7 @@ function ExperienceItem({ title, company, period, description, achievements, isL
               </span>
             ))}
           </div>
-          <a href="javascript:void(0)" className="inline-block mt-4 text-black font-medium hover:underline">
+          <a href="www.alabishina.com/blog" className="inline-block mt-4 text-black font-medium hover:underline">
             Read More →
           </a>
         </div>
