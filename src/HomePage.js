@@ -348,21 +348,21 @@ export default function PortfolioWebsite() {
                 date="April 15, 2025"
                 excerpt="Exploring the latest trends and best practices in cloud architecture design, with a focus on multi-cloud strategies and cost optimization."
                 tags={["Cloud", "Architecture", "Best Practices"]}
-                imageUrl="https://via.placeholder.com/300x200"
+                imageUrl="https://placehold.co/300x200"
               />
               <BlogCard
                 title="Infrastructure as Code: Beyond the Basics"
                 date="March 22, 2025"
                 excerpt="Taking your IaC implementations to the next level with advanced Terraform techniques and modular design patterns."
                 tags={["IaC", "Terraform", "DevOps"]}
-                imageUrl="https://via.placeholder.com/300x200"
+                imageUrl="https://placehold.co/300x200"
               />
               <BlogCard
                 title="Securing Kubernetes in Production Environments"
                 date="February 8, 2025"
                 excerpt="A comprehensive guide to implementing security best practices for Kubernetes clusters in enterprise environments."
                 tags={["Kubernetes", "Security", "DevOps"]}
-                imageUrl="https://via.placeholder.com/300x200"
+                imageUrl="https://placehold.co/300x200"
               />
             </div>
             
