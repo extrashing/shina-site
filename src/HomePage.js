@@ -558,14 +558,14 @@ export default function PortfolioWebsite() {
                       title="LinkedIn" 
                       value="Connect with me on LinkedIn" 
                       isLink={true} 
-                      href="https://linkedin.com/in/your-profile" 
+                      href="https://linkedin.com/in/alabishina" 
                     />
                     <ContactItem 
                       icon={<Github size={20} />}
                       title="GitHub" 
                       value="View my projects on GitHub" 
                       isLink={true} 
-                      href="https://github.com/your-username" 
+                      href="https://github.com/extrashing" 
                     />
                   </div>
                 </div>
